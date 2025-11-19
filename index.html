@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Profesional</title>
+    <title>Portfolio Profesional | Santiago Muñoz Estrada</title>
     <meta
       name="description"
       content="Portafolio personal de Santiago. Desarrollador Web en formación aprendiendo HTML y CSS."
@@ -11,54 +11,100 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Santiago Muñoz Estrada</h1>
-      <h2>Desarrollador Web en Formación</h2>
-      <br>
-      <nav>
-        <ul>
-          <li><a href="#yo">Sobre mí</a></li>
-          <li><a href="#proyectos">Mis proyectos</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-    </header>
+<header>
+  <div class="header-titles">
+    <h1>Santiago Muñoz Estrada</h1>
+  </div>
+  
+  <input type="checkbox" id="menu-toggle-checkbox" class="menu-toggle-checkbox" aria-label="Abrir menú de navegación">
+  
+  <label for="menu-toggle-checkbox" class="menu-toggle">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </label>
+  
+  <nav id="main-nav" aria-label="Navegación principal">
+    <ul>
+      <li><a href="#yo">Sobre mí</a></li>
+      <li><a href="#proyectos">Mis proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+    
     <main>
-      <figure class="mi-imagen">
-        <img src="Y.jpeg" alt="Foto de perfil de Santiago" />
-      </figure>
-      <section id="yo">
-        <h2>Sobre mí</h2>
-        <p>Hola, soy Santiago, un desarrollador web en formación con una gran pasión por la tecnología. Actualmente, estoy cursando una tecnología en Análisis y Desarrollo de Software (ADSO) en el SENA, lo que me proporciona una base sólida en lógica de programación, bases de datos y metodologías de desarrollo. Me encuentro en una etapa de mucha motivación por aprender y aplicar activamente mis conocimientos de HTML y CSS para construir paginas funcionales y visualmente atractivas.</p>
-      </section>
+      <div class="intro-section">
+          <figure class="mi-imagen">
+            <img src="Yo.jpeg" alt="Foto de perfil de Santiago" />
+          </figure>
+          
+          <section id="yo">
+            <h2>Sobre mí</h2>
+            <p>Hola, soy Santiago, un desarrollador web en formación con una gran pasión por la tecnología. Actualmente, estoy cursando una tecnología en Análisis y Desarrollo de Software (ADSO) en el SENA, lo que me proporciona una base sólida en lógica de programación, bases de datos y metodologías de desarrollo. Me encuentro en una etapa de mucha motivación por aprender y aplicar activamente mis conocimientos de HTML y CSS para construir paginas funcionales y visualmente atractivas.</p>
+            
+            <a href="CV.pdf" class="button download-button" download>Descargar CV (PDF)</a>
+          </section>
+      </div>
       
       <section id="proyectos">
         <h2>Mis proyectos</h2>
-        <br>
+        
         <ul class="proyecto-lista">
           <li class="proyecto-card">
-            <h3>Proyecto 1: Página Web Personal</h3>
-            <p>Creación de mi primer portafolio estático utilizando HTML y CSS. Enfoque en accesibilidad y diseño responsivo.</p>
-            <p><a href="#" target="_blank">Ver Proyecto</a></p>
+            <article>
+              <h3>Proyecto 1: Página Web Personal</h3>
+              <p>Creación de mi primer portafolio estático utilizando HTML y CSS. Enfoque en accesibilidad y diseño responsivo.</p>
+            </article>
           </li>
+          
           <li class="proyecto-card">
-            <h3>Proyecto 2</h3>
-            <p>Proximamente...</p>
-            <p><a href="#" target="_blank">Ver Proyecto</a></p>
+            <article>
+              <h3>Proyecto 2</h3>
+              <p>Próximamente...</p>
+            </article>
           </li>
         </ul>
       </section>
 
       <section id="contacto">
         <h2>Contacto</h2>
-        <p><strong>Email:</strong> <a href="mailto:santiago.munoz1707@gmail.com">santiago.munoz1707@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/santme17" target="_blank" rel="noopener noreferrer">linkedin.com/in/santiago</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/santme17" target="_blank" rel="noopener noreferrer">github.com/santiago</a></p>
-        <a href="CV" class="button" download>Descargar CV (PDF)</a>
+        
+        <div class="contacto-container">
+            
+            <div class="contacto-info">
+                <h3>Información de Contacto</h3>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:santiago.munoz1707@gmail.com">santiago.munoz1707@gmail.com</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/santme17" target="_blank" rel="noopener noreferrer">linkedin.com/in/santiago</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/santme17" target="_blank" rel="noopener noreferrer">github.com/santiago</a></li>
+                </ul>
+            </div>
+
+            <form action="procesar_formulario.php" method="POST" class="contact-form">
+                
+                <h3>Envía un Mensaje</h3>
+                
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                
+                <button type="submit" class="button">Enviar Mensaje</button>
+                
+            </form>
+        </div>
+        
       </section>
     </main>
+    
     <footer>
       <p>&copy; 2025 Santiago Muñoz Estrada. Todos los derechos reservados.</p>
     </footer>
+    
   </body>
 </html>

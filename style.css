@@ -1,3 +1,21 @@
+:root {
+  /* VARIABLES GENERALES */
+  --color-dark-primary: #222;
+  --color-medium-gray: #333;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-neon-white: #e0f2f7;
+  
+  /* VARIABLES DE FONDO */
+  --color-bg-body: #7f7f7f;
+  --color-bg-light: #f7f7f7;
+  --color-bg-white-translucent: #ffffffb7;
+
+  /* VARIABLES EFECTO NEÓN (INTENSIDAD MEDIA) */
+  --neon-shadow-intensity: 0 0 8px 3px var(--color-neon-white);
+  --neon-shadow-hover-intensity: 0 0 15px 5px var(--color-neon-white);
+}
+
 html {
   font-size: 62.5%;
 }
@@ -9,117 +27,171 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Georgia, serif; 
   margin: 0;
   padding: 0;
-  background-color: #7f7f7f;
+  background-color: var(--color-black);
   font-size: 1.6rem;
   line-height: 1.6;
 }
 
-.mi-imagen {
-  display: flex; /* Nuevo: contenedor flex para centrado perfecto */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente si es necesario */
-  margin: 3rem auto 0;
-  max-width: 200px;
-  height: 250px;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.mi-imagen img {
-  width: 100%;
-  height: 100%;
-  border: 0.8rem solid #ffffffb7;
-  box-shadow: 0 0 0 0.4rem #000000;
-  object-fit: cover;
-  /* Eliminado border-radius: 0; para que herede del contenedor */
-}
+/* --- ESTILOS DE HEADER Y NAV --- */
 
 header {
-  background-color: #222;
-  color: #fff;
-  padding: 1rem 0;
-  display: flex; /* Nuevo: convierte el header en un contenedor flex */
-  flex-direction: column; /* Apila h1, h2 y nav verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  justify-content: center; /* Centra verticalmente si es necesario */
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 2rem 3rem; 
+  margin: 2rem auto 3rem; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: center; 
+  max-width: 900px; 
+  border-radius: 15px; 
+  overflow: hidden; 
+  box-shadow: var(--neon-shadow-intensity);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+header:hover {
+  box-shadow: var(--neon-shadow-hover-intensity);
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 nav {
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
+  background-color: transparent; 
+  padding: 0;
+  width: auto; 
+  border-radius: 0; 
+  margin: 0;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
   display: flex; 
-  justify-content: center; 
+  justify-content: flex-start; 
   gap: 1.5rem; 
+  padding-left: 0;
 }
 
 nav ul li a {
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
-  transition: color 0.3s; /* Agregado para suavidad */
+  transition: color 0.3s; 
 }
 
-nav ul li a:hover {
-  color: #ccc; /* Mejor hover */
+nav ul li a:hover,
+nav ul li a:focus {
+  color: var(--color-bg-light);
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
+
+/* --- ESTILOS DE IMAGEN (.mi-imagen) --- */
+
+.mi-imagen {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin: 0; 
+  max-width: 200px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: var(--neon-shadow-intensity);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.mi-imagen:hover {
+  box-shadow: var(--neon-shadow-hover-intensity);
+}
+
+.mi-imagen img {
+  width: 100%;
+  height: 100%;
+  border: 0.8rem solid var(--color-bg-white-translucent);
+  box-shadow: 0 0 0 0.4rem var(--color-black);
+  object-fit: cover;
+}
+
+/* --- ESTILOS DE MAIN Y SECTION --- */
 
 main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #000000;
+  background-color: var(--color-black);
+  border-radius: 15px; 
+  overflow: hidden; 
+  box-shadow: var(--neon-shadow-intensity);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Media query para móviles: reducir padding, ajustar imagen y secciones */
-@media (max-width: 767px) {
-  main {
-    padding: 1rem;
-  }
-  nav ul {
-    flex-direction: column; /* Apilar enlaces en móviles */
-    gap: 1rem;
-  }
-  .mi-imagen {
-    max-width: 150px; /* Reduce el tamaño de la imagen en móviles */
-    height: 200px; /* Ajusta la altura proporcionalmente */
-    margin: 2rem auto 0; /* Reduce el margen superior */
-  }
-  section {
-    padding: 2rem 1rem; /* Reduce el padding interno de las secciones para ahorrar espacio */
-  }
+main:hover {
+  box-shadow: var(--neon-shadow-hover-intensity);
 }
 
 section {
-  margin: 2rem auto;
   padding: 4rem 2rem;
-  background-color: #ffffffb7;
-  border: 1px solid #000000;
+  background-color: var(--color-bg-white-translucent);
+  border: 1px solid var(--color-black);
   border-radius: 10px;
-  max-width: 800px;
+  box-shadow: var(--neon-shadow-intensity);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-section a {
-  color: #228991;
-  text-decoration: underline;
+section:hover {
+  box-shadow: var(--neon-shadow-hover-intensity);
 }
 
-footer {
-  display: flex; /* Nuevo: contenedor flex para centrado */
-  justify-content: center; /* Centra el párrafo */
-  align-items: center; /* Centra verticalmente */
-  padding: 1rem;
-  background-color: #333;
-  color: #fff;
+.intro-section,
+#proyectos, 
+#contacto {
+  max-width: 900px; 
+  margin: 2rem auto;
 }
+
+#proyectos h2, #contacto h2 {
+  text-align: left;
+  padding-left: 0; 
+  margin-bottom: 2rem; 
+}
+
+/* --- ESTILOS DE SECTION INTRO Y #yo --- */
+
+.intro-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem; 
+  padding: 2rem; 
+}
+
+#yo {
+  display: block; 
+  align-items: initial;
+  text-align: left; 
+  margin: 0; 
+  max-width: none;
+  padding: 2rem; 
+  background-color: var(--color-bg-white-translucent);
+  border: 1px solid var(--color-black);
+  border-radius: 10px; 
+}
+
+#yo .button {
+  margin-top: 2rem; 
+  align-self: flex-start; 
+}
+
+/* --- ESTILOS DE SECTION PROYECTOS --- */
 
 .proyecto-lista {
   list-style: none;
@@ -130,7 +202,7 @@ footer {
 }
 
 .proyecto-card {
-  background-color: #f7f7f7;
+  background-color: var(--color-bg-light);
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 2rem;
@@ -148,65 +220,121 @@ footer {
 }
 
 .proyecto-card h3 {
-  color: #333;
+  color: var(--color-medium-gray);
   margin-top: 0;
   font-size: 2rem;
 }
 
-.proyecto-card p a {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-
-.proyecto-card p a:hover {
-  background-color: #7f7f7f;
-}
-
-/* Media query para tablets y desktop */
-@media (min-width: 768px) {
-  .proyecto-lista {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Para pantallas muy grandes, 3 columnas */
-@media (min-width: 1200px) {
-  .proyecto-lista {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+/* --- ESTILOS DE SECTION CONTACTO --- */
 
 #contacto {
-  display: flex; /* Nuevo: contenedor flex */
-  flex-direction: column; /* Apila elementos verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  gap: 1rem; /* Espacio entre elementos */
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 1rem; 
 }
 
-#contacto p a {
-  color: #333; 
+.contacto-container {
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+  gap: 3rem; 
+  padding-top: 2rem;
+}
+
+.contacto-info {
+  flex: 1; 
+  padding: 2rem;
+  background-color: var(--color-bg-light);
+  border-radius: 8px;
+  height: fit-content; 
+  color: var(--color-medium-gray);
+  font-weight: bold;
+}
+
+.contacto-info h3 {
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.contacto-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacto-info li {
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+}
+
+.contacto-info li strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.contacto-info li a {
+  color: var(--color-medium-gray);
   text-decoration: underline;
   transition: color 0.3s;
 }
 
-#contacto p a:hover {
-  color: #555; 
+.contacto-info li a:hover {
+  color: var(--color-dark-primary);
 }
+
+.contact-form {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: none; 
+  padding: 2rem;
+  background-color: var(--color-bg-light); 
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h3 {
+  color: var(--color-medium-gray);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-medium-gray);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  width: 100%; 
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+/* --- ESTILOS DE BOTONES --- */
 
 .button {
   display: inline-block;
-  background-color: #333; 
-  color: rgb(255, 255, 255);
+  background-color: var(--color-medium-gray);
+  color: var(--color-white);
   padding: 1rem 2rem; 
   text-decoration: none;
   border-radius: 5px;
-  margin-top: 1.5rem; 
   transition: background-color 0.3s;
 }
 
@@ -214,11 +342,240 @@ footer {
   background-color: #555;
 }
 
-/* Media query adicional para #contacto en tablets+ */
+#yo .button {
+  margin-top: 2rem; 
+}
+
+.contact-form .button {
+  margin-top: 2rem; 
+  width: auto; 
+  align-self: flex-start; 
+}
+
+/* --- ESTILOS DE FOOTER --- */
+
+footer {
+  max-width: 900px; 
+  margin: 3rem auto 2rem; 
+  border-radius: 15px; 
+  overflow: hidden; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 1rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  box-shadow: var(--neon-shadow-intensity);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+footer:hover {
+  box-shadow: var(--neon-shadow-hover-intensity);
+}
+
+/* --- ESTILOS DEL MENÚ HAMBURGUESA (CSS PURO) --- */
+
+/* Base de funcionalidad (Ocultar el checkbox) */
+.menu-toggle-checkbox {
+  display: none; 
+}
+
+/* Estilo del botón (label) */
+.menu-toggle {
+  display: none; 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1000;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  color: var(--color-white); 
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Control de despliegue inicial */
+header nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+/* --- MEDIA QUERIES --- */
+
+/* --- AJUSTES DE DESKTOP Y TABLETS (min-width: 768px) --- */
 @media (min-width: 768px) {
+  
+  /* Layout de Sección Intro */
+  .intro-section {
+    flex-direction: row; 
+    align-items: flex-start; 
+    padding: 2rem; 
+  }
+
+  .mi-imagen {
+    flex: 0 0 250px; 
+  }
+
+  #yo {
+    flex: 1; 
+    padding-left: 3rem; 
+    padding-top: 0; 
+  }
+  
+  /* Layout de Proyectos */
+  .proyecto-lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Layout de Contacto */
+  .contacto-container {
+    flex-direction: row; 
+    align-items: flex-start; 
+  }
+  
+  .contacto-info h3, .contact-form h3 {
+    text-align: left; 
+  }
+  
+  /* Comportamiento del Nav */
+  header nav {
+    max-height: initial;
+    overflow: visible;
+    flex-basis: auto;
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* --- AJUSTES PARA PANTALLAS GRANDES (min-width: 1200px) --- */
+@media (min-width: 1200px) {
+  .proyecto-lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- AJUSTES DE MÓVILES (max-width: 767px) --- */
+@media (max-width: 767px) {
+  
+  /* Comportamiento General */
+  header, main, footer { 
+    box-shadow: none;
+    border-radius: 0;
+  }
+  header:hover, main:hover, footer:hover {
+    box-shadow: none;
+  }
+  main {
+    padding: 1rem;
+  }
+
+  /* AJUSTE DE HEADER Y NAV */
+  header {
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+    flex-wrap: wrap; /* Permite que el NAV se envuelva hacia abajo */
+  }
+  
+  .header-titles {
+    flex-shrink: 1; 
+    margin-right: 0.5rem;
+    align-items: flex-start; 
+    text-align: left;
+    overflow: hidden; 
+  }
+  
+  /* AJUSTE DEL H1 EN MÓVIL (Para evitar salto de línea excesivo) */
+  .header-titles h1 {
+    font-size: 2.2rem;
+    line-height: 1.2; 
+    white-space: normal; 
+  }
+
+  /* ESTILOS DEL MENÚ HAMBURGUESA */
+  .menu-toggle {
+    display: block; 
+    flex-shrink: 0;
+  }
+
+  header nav {
+    width: 100%; 
+    flex-basis: 100%; /* Fuerza al NAV a ocupar toda la línea debajo del TÍTULO/BOTÓN */
+  }
+
+  /* LÓGICA CSS PURO: MENÚ DESPLEGABLE HACIA ABAJO */
+  .menu-toggle-checkbox:checked ~ .menu-toggle + nav {
+    max-height: 300px;
+  }
+
+  /* LÓGICA CSS PURO: ANIMACIÓN "X" */
+  .menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(2) {
+    opacity: 0; 
+  }
+  .menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Estilo del menú desplegado */
+  header nav ul {
+    flex-direction: column; 
+    gap: 1.5rem; 
+    padding: 1rem 0 2rem; 
+    background-color: var(--color-black); 
+  }
+  
+  header nav ul li a {
+    padding: 0.5rem 1rem;
+    display: block; 
+    text-align: center;
+  }
+  
+  /* AJUSTES DE LAYOUT DE CONTENIDO */
+  .intro-section {
+    flex-direction: column;
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+  
+  .mi-imagen {
+    max-width: 150px; 
+    height: 200px; 
+  }
+  
+  #proyectos, #contacto {
+    max-width: 100%;
+    margin: 2rem 0;
+    padding: 2rem 1rem;
+  }
+  
   #contacto {
-    flex-direction: column; /* Cambia a fila en tablets+ */
-    flex-wrap: wrap; /* Permite wrapping si es necesario */
-    justify-content: center;
+    align-items: center; 
+  }
+
+  #yo {
+    padding: 2rem 1rem; 
+  }
+
+  footer {
+    max-width: 100%;
+    margin: 3rem 0 0;
   }
 }
