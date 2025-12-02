@@ -75,24 +75,23 @@
             <div class="contacto-info">
                 <h3>Información de Contacto</h3>
                 <ul>
-                    <li><strong>Email:</strong> <a href="mailto:santiago.munoz1707@gmail.com">santiago.munoz1707@gmail.com</a></li>
                     <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/santme17" target="_blank" rel="noopener noreferrer">linkedin.com/in/santiago</a></li>
                     <li><strong>GitHub:</strong> <a href="https://github.com/santme17" target="_blank" rel="noopener noreferrer">github.com/santiago</a></li>
                 </ul>
             </div>
 
-            <form action="procesar_formulario.php" method="POST" class="contact-form">
+            <form action="https://formspree.io/f/xnnevbwl" method="POST" class="contact-form">
                 
                 <h3>Envía un Mensaje</h3>
                 
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="name" required> 
                 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="_replyto" required>
                 
                 <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                <textarea id="mensaje" name="message" rows="5" required></textarea>
                 
                 <button type="submit" class="button">Enviar Mensaje</button>
                 
@@ -106,5 +105,7 @@
       <p>&copy; 2025 Santiago Muñoz Estrada. Todos los derechos reservados.</p>
     </footer>
     
+   
+   <script src="main.js"></script>
   </body>
 </html>
