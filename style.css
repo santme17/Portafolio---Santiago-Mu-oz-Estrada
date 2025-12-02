@@ -1,5 +1,10 @@
+/*
+ * ========================================
+ * 1. VARIABLES CSS 
+ * ========================================
+ */
 :root {
-  /* VARIABLES GENERALES (TECNOLÓGICO FORMAL) */
+  /* VARIABLES GENERALES */
   --color-dark-primary: #0A0E17;
   --color-black: #0A0E17;
   --color-white: #FFFFFF;
@@ -9,17 +14,20 @@
   --color-bg-body: var(--color-black); 
   --color-bg-card: #1C253B;
   --color-bg-light: #F4F4F4;
-  --color-bg-translucent: #1C253Bb7;
 
-  /* VARIABLES SOMBRA/CONTORNO (LIMPIO Y FORMAL) */
-  --shadow-subtle: 0 0 0 1px var(--color-resalt-cian);
+  /* VARIABLES SOMBRA/CONTORNO Y TRANSICIONES */
   --shadow-hover: 0 0 10px rgba(74, 222, 222, 0.5);
+  --transition-speed: 0.3s;
 }
 
-/* --- ESTILOS BASE Y RESET --- */
-
+/*
+ * ========================================
+ * 2. ESTILOS BASE Y RESET
+ * ========================================
+ */
 html {
-  font-size: 62.5%;
+  /* Base para rem (1rem = 10px) */
+  font-size: 62.5%; 
 }
 
 * {
@@ -30,31 +38,41 @@ html {
 
 body {
   font-family: Georgia, serif; 
-  margin: 0;
-  padding: 0;
   background-color: var(--color-bg-body); 
   color: var(--color-white);
   font-size: 1.6rem;
   line-height: 1.6;
 }
 
-/* --- TÍTULOS Y TEXTO --- */
+/*
+ * ========================================
+ * 3. TIPOGRAFÍA Y ENLACES GENERALES
+ * ========================================
+ */
 
 h1, h2 {
   color: var(--color-resalt-cian);
   text-shadow: none; 
-  animation: none; 
 }
 
 p {
   color: var(--color-white);
 }
 
-/* --- HEADER Y NAVEGACIÓN (FLEXBOX) --- */
+a {
+  text-decoration: none;
+  /* Transición general para todos los enlaces */
+  transition: color var(--transition-speed);
+}
+
+/*
+ * ========================================
+ * 4. HEADER Y NAVEGACIÓN
+ * ========================================
+ */
 
 header {
   background-color: var(--color-black);
-  color: var(--color-white);
   padding: 2rem 3rem; 
   margin: 2rem auto 3rem; 
   display: flex; 
@@ -63,20 +81,8 @@ header {
   align-items: center; 
   max-width: 900px; 
   border-radius: 15px; 
-  overflow: hidden; 
-  box-shadow: none;
   border: 1px solid var(--color-bg-card);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-header nav {
-  max-height: 0; 
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-}
-
-.menu-toggle {
-  display: none;
+  transition: box-shadow var(--transition-speed) ease-in-out;
 }
 
 header:hover {
@@ -89,15 +95,16 @@ header:hover {
   text-align: left;
 }
 
-nav {
-  background-color: transparent; 
+/* Estado inicial de la navegación (oculta en móvil/tablet) */
+header nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
   padding: 0;
-  width: auto; 
-  border-radius: 0; 
   margin: 0;
 }
 
-nav ul {
+header nav ul {
   list-style: none;
   padding: 0;
   display: flex; 
@@ -106,35 +113,127 @@ nav ul {
   padding-left: 0;
 }
 
-nav ul li a {
+header nav ul li a {
   color: var(--color-white);
   text-decoration: none;
-  transition: color 0.3s, outline 0.3s;
+  transition: color var(--transition-speed), outline var(--transition-speed);
 }
 
-nav ul li a:hover,
-nav ul li a:focus {
+header nav ul li a:hover,
+header nav ul li a:focus {
   color: var(--color-resalt-cian);
-  text-shadow: none; 
   outline: 2px solid var(--color-resalt-cian);
   outline-offset: 2px;
   border-radius: 3px;
 }
 
-/* --- IMAGEN (.mi-imagen) --- */
+/* Botón Hamburguesa */
+.menu-toggle-checkbox {
+  display: none; 
+}
+
+.menu-toggle {
+  display: none; /* Se activa en media query max-width: 1023px */
+  cursor: pointer;
+  z-index: 1000;
+  width: 30px;
+  height: 24px;
+  position: relative;
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+
+/* LÓGICA DE APERTURA Y CIERRE (CSS PURO) */
+.menu-toggle-checkbox:checked ~ nav { 
+  max-height: 300px; /* Despliega el menú */
+}
+.menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(2) {
+  opacity: 0; 
+}
+.menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/*
+ * ========================================
+ * 5. LAYOUT PRINCIPAL Y SECCIONES
+ * ========================================
+ */
+
+main {
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 2rem; 
+  background-color: var(--color-black);
+  border-radius: 15px; 
+  border: 1px solid var(--color-bg-card);
+  transition: box-shadow var(--transition-speed) ease-in-out;
+}
+
+main:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+section {
+  padding: 4rem 2rem;
+  background-color: var(--color-bg-card);
+  border-radius: 10px;
+  transition: box-shadow var(--transition-speed) ease-in-out;
+}
+
+section:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.intro-section,
+#proyectos, 
+#conocimientos,
+#contacto {
+  max-width: 900px; 
+  margin: 2rem auto;
+}
+
+h2 {
+  text-align: left;
+  margin-bottom: 2rem; 
+}
+
+
+/*
+ * ========================================
+ * 6. SECCIÓN INTRODUCCIÓN Y SOBRE MÍ
+ * ========================================
+ */
+
+.intro-section {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 3rem; 
+  padding: 2rem; 
+}
 
 .mi-imagen {
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  margin: 0; 
   max-width: 200px;
   height: 250px;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: none;
   border: 1px solid var(--color-resalt-cian);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow var(--transition-speed) ease-in-out;
 }
 
 .mi-imagen:hover {
@@ -149,63 +248,8 @@ nav ul li a:focus {
   object-fit: cover;
 }
 
-/* --- MAIN Y SECTION --- */
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: var(--color-black);
-  border-radius: 15px; 
-  overflow: hidden; 
-  box-shadow: none;
-  border: 1px solid var(--color-bg-card);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-main:hover {
-  box-shadow: var(--shadow-hover);
-}
-
-section {
-  padding: 4rem 2rem;
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-bg-card);
-  border-radius: 10px;
-  box-shadow: none;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-section:hover {
-  box-shadow: var(--shadow-hover);
-}
-
-.intro-section,
-#proyectos, 
-#contacto {
-  max-width: 900px; 
-  margin: 2rem auto;
-}
-
-#proyectos h2, #contacto h2 {
-  text-align: left;
-  padding-left: 0; 
-  margin-bottom: 2rem; 
-}
-
-/* --- SECTION INTRO Y #yo (FLEXBOX) --- */
-
-.intro-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem; 
-  padding: 2rem; 
-}
-
 #yo {
   display: block; 
-  align-items: initial;
   text-align: left; 
   margin: 0; 
   max-width: none;
@@ -213,26 +257,21 @@ section:hover {
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-bg-card);
   border-radius: 10px; 
-  color: var(--color-white);
 }
 
-#yo p {
-   color: var(--color-white);
-}
 
-#yo .button {
-  margin-top: 2rem; 
-  align-self: flex-start; 
-}
-
-/* --- SECTION PROYECTOS (GRID) --- */
+/*
+ * ========================================
+ * 7. SECCIÓN PROYECTOS (GRID LAYOUT)
+ * ========================================
+ */
 
 .proyecto-lista {
   list-style: none;
   padding: 0;
   display: grid;
   gap: 2rem;
-  /* Grid para móvil: una columna */
+  /* Móvil: 1 columna */
   grid-template-columns: minmax(0, 1fr); 
 }
 
@@ -241,12 +280,11 @@ section:hover {
   border: 1px solid var(--color-bg-card);
   border-radius: 8px;
   padding: 2rem;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 .proyecto-card:hover {
@@ -256,26 +294,69 @@ section:hover {
 
 .proyecto-card h3 {
   color: var(--color-resalt-cian);
-  text-shadow: none; 
-  margin-top: 0;
   font-size: 2rem;
 }
-.proyecto-card p {
-   color: var(--color-white); 
+
+/*
+ * ========================================
+ * 8. SECCIÓN CONOCIMIENTOS (GRID LAYOUT)
+ * ========================================
+ */
+
+.conocimientos-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr); 
 }
 
-/* --- SECTION CONTACTO (FLEXBOX) --- */
-
-#contacto {
-  display: flex; 
-  flex-direction: column; 
-  align-items: flex-start; 
-  gap: 1rem; 
+.skill-card {
+    background-color: var(--color-black);
+    border: 1px solid var(--color-bg-card);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover); 
+}
+
+.skill-icon {
+    width: 60px; 
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.skill-card h3 {
+    color: var(--color-resalt-cian);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-card p {
+    font-size: 1.4rem;
+    color: #b0c4de; 
+}
+
+
+/*
+ * ========================================
+ * 9. SECCIÓN CONTACTO (FLEXBOX)
+ * ========================================
+ */
 
 .contacto-container {
   display: flex;
-  flex-direction: column; /* Por defecto: apilado en móvil */
+  flex-direction: column; 
   width: 100%;
   gap: 3rem; 
   padding-top: 2rem;
@@ -291,39 +372,32 @@ section:hover {
   font-weight: bold;
 }
 
-.contacto-info h3 {
+.contacto-info h3, .contact-form h3 {
   color: var(--color-resalt-cian);
-  text-shadow: none; 
   margin-bottom: 1.5rem;
   font-size: 2rem;
-  text-align: center;
+  text-align: center; 
 }
 
-.contacto-info ul {
-  list-style: none;
-  padding: 0;
+/* ESTILOS DE ENLACES DE CONTACTO */
+.contacto-info a {
+    color: var(--color-white); 
+    font-weight: normal;
+}
+.contacto-info a:hover {
+    color: var(--color-resalt-cian); 
 }
 
 .contacto-info li {
   margin-bottom: 1.5rem;
   font-size: 1.7rem;
+  list-style: none; 
 }
 
 .contacto-info li strong {
   display: block;
   margin-bottom: 0.5rem;
   font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.contacto-info li a {
-  color: var(--color-white);
-  text-decoration: underline;
-  transition: color 0.3s;
-}
-
-.contacto-info li a:hover {
-  color: var(--color-resalt-cian);
 }
 
 .contact-form {
@@ -331,19 +405,9 @@ section:hover {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: none; 
   padding: 2rem;
   background-color: var(--color-black); 
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form h3 {
-  color: var(--color-resalt-cian);
-  text-shadow: none;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  text-align: center;
 }
 
 .contact-form label {
@@ -363,8 +427,7 @@ section:hover {
   border-radius: 5px;
   font-size: 1.6rem;
   width: 100%; 
-  /* Transición al enfocar */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .contact-form input:focus,
@@ -378,7 +441,18 @@ section:hover {
   resize: vertical;
 }
 
-/* --- BOTONES (TECNOLÓGICO FORMAL) --- */
+.contact-form .button {
+  margin-top: 2rem; 
+  width: auto; 
+  align-self: center; 
+}
+
+
+/*
+ * ========================================
+ * 10. BOTONES Y PIE DE PÁGINA
+ * ========================================
+ */
 
 .button {
   display: inline-block;
@@ -387,9 +461,8 @@ section:hover {
   padding: 1rem 2rem; 
   text-decoration: none;
   border-radius: 5px;
-  box-shadow: none; 
   border: 1px solid var(--color-resalt-cian);
-  transition: all 0.3s;
+  transition: all var(--transition-speed);
   cursor: pointer;
 }
 
@@ -397,82 +470,69 @@ section:hover {
   background-color: var(--color-resalt-cian);
   color: var(--color-black);
   box-shadow: none; 
-  border: 1px solid var(--color-resalt-cian);
-  animation: none;
 }
 
 #yo .button {
   margin-top: 2rem; 
 }
 
-.contact-form .button {
-  margin-top: 2rem; 
-  width: auto; 
-  align-self: flex-start; 
-  /* Alineación para desktop */
-}
-
-/* --- FOOTER --- */
-
 footer {
   max-width: 900px; 
   margin: 3rem auto 2rem; 
   border-radius: 15px; 
-  overflow: hidden; 
   display: flex; 
   justify-content: center; 
   align-items: center; 
   padding: 1rem;
   background-color: var(--color-black);
-  color: var(--color-white);
-  box-shadow: none;
   border: 1px solid var(--color-bg-card);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow var(--transition-speed) ease-in-out;
 }
 
 footer:hover {
   box-shadow: var(--shadow-hover);
 }
 
-/* --- ESTILOS DEL MENÚ HAMBURGUESA (MÓVIL) --- */
 
-.menu-toggle-checkbox {
-  display: none; 
+/*
+ * ========================================
+ * 11. MEDIA QUERIES (RESPONSIVIDAD)
+ * ========================================
+ */
+
+/* --- VISIBILIDAD DE MENÚ HAMBURGUESA (0px a 1023px) --- */
+@media (max-width: 1023px) {
+
+  /* HACE EL ÍCONO DE HAMBURGUESA VISIBLE */
+  .menu-toggle {
+    display: block; 
+    flex-shrink: 0;
+  }
+
+  /* FUERZA EL HEADER A ENVOLVER EL CONTENIDO Y LA NAVEGACIÓN A OCUPAR TODO EL ANCHO */
+  header {
+      flex-wrap: wrap; 
+  }
+  
+  header nav {
+    width: 100%; 
+    flex-basis: 100%;
+  }
+
+  /* ESTABLECE EL FORMATO DE LISTA VERTICAL */
+  header nav ul {
+    flex-direction: column; 
+    gap: 1.5rem; 
+    padding: 1rem 0 2rem; 
+    background-color: var(--color-black); 
+  }
 }
 
-.menu-toggle {
-  display: none; 
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1000;
-  width: 30px;
-  height: 24px;
-  position: relative;
-  color: var(--color-white); 
-}
 
-.menu-toggle .bar {
-  display: block;
-  width: 100%;
-  height: 3px;
-  margin: 5px 0;
-  background-color: var(--color-white);
-  transition: all 0.3s ease-in-out;
-}
-
-header nav {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-}
-
-/* --- MEDIA QUERIES --- */
-
-/* --- AJUSTES DE DESKTOP Y TABLETS (min-width: 768px) --- */
+/* --- LAYOUT PARA TABLET/LAPTOP PEQUEÑA (min-width: 768px) --- */
 @media (min-width: 768px) {
   
+  /* Secciones a dos columnas */
   .intro-section {
     flex-direction: row; 
     align-items: flex-start; 
@@ -482,35 +542,39 @@ header nav {
   .mi-imagen {
     flex: 0 0 250px; 
   }
-
-  #yo {
-    flex: 1; 
-    padding-left: 3rem; 
-    padding-top: 0; 
-  }
   
-  /* GRID: 2 columnas para proyectos */
+  /* GRID: Proyectos en 2 columnas */
   .proyecto-lista {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  /* FLEXBOX: Dos columnas de igual altura para contacto */
+  /* GRID: Conocimientos en 3 columnas */
+  .conocimientos-grid {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+  
+  /* CONTACTO: Dos columnas de igual altura */
   .contacto-container {
     flex-direction: row; 
-    align-items: stretch; /* Asegura la misma altura */
+    align-items: stretch;
   }
   
-  .contacto-info {
-    flex: 1;
+  .contact-form .button {
+    align-self: flex-start; 
   }
-  
-  .contact-form {
-    flex: 1;
-    align-items: flex-start; /* Restaura la alineación a la izquierda para desktop */
-  }
-  
+
   .contacto-info h3, .contact-form h3 {
     text-align: left; 
+  }
+}
+
+
+/* --- LAYOUT PARA ESCRITORIO ESTÁNDAR (min-width: 1024px) --- */
+@media (min-width: 1024px) { 
+  
+  /* Desactiva el menú de hamburguesa y activa el horizontal */
+  .menu-toggle {
+    display: none;
   }
   
   header nav {
@@ -519,134 +583,48 @@ header nav {
     flex-basis: auto;
   }
   
-  .menu-toggle {
-    display: none;
+  /* Restablece la navegación horizontal */
+  header nav ul {
+    flex-direction: row;
   }
-}
-
-/* --- AJUSTES PARA PANTALLAS GRANDES (min-width: 1200px) --- */
-@media (min-width: 1200px) {
-  /* GRID: 3 columnas para proyectos */
+  
+  /* CORRECCIÓN DE ANCHURA: Proyectos a 3 columnas para que sean más estrechos */
   .proyecto-lista {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* --- AJUSTES DE MÓVILES (max-width: 767px) --- */
-@media (max-width: 767px) {
+
+/* --- LAYOUT PARA ESCRITORIO GRANDE (min-width: 1400px) --- */
+@media (min-width: 1400px) {
   
+  /* GRID: Conocimientos en 4 columnas */
+  .conocimientos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+}
+
+
+/* --- AJUSTES ESPECÍFICOS DE MÓVILES EXTREMOS (max-width: 500px) --- */
+@media (max-width: 500px) {
+  
+  /* Proyecto y Conocimientos a 1 columna */
+  .proyecto-lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .conocimientos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Ajustes estéticos */
   header, main, footer { 
     box-shadow: none;
     border-radius: 0;
     border: none;
-  }
-  header:hover, main:hover, footer:hover {
-    box-shadow: none;
+    margin: 0;
   }
   main {
     padding: 1rem;
-  }
-
-  header {
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center; 
-    max-width: 100%;
-    margin: 0;
-    padding: 1rem;
-    flex-wrap: wrap; 
-  }
-  
-  .header-titles {
-    flex-shrink: 1; 
-    margin-right: 0.5rem;
-    align-items: flex-start; 
-    text-align: left;
-    overflow: hidden; 
-  }
-  
-  .header-titles h1 {
-    font-size: 2.2rem;
-    line-height: 1.2; 
-    white-space: normal; 
-  }
-
-  .menu-toggle {
-    display: block !important; 
-    flex-shrink: 0;
-  }
-
-  header nav {
-    width: 100%; 
-    flex-basis: 100%;
-    max-height: 0;
-    overflow: hidden;
-  }
-
-  /* LÓGICA CSS PURO: MENÚ DESPLEGABLE HACIA ABAJO */
-  .menu-toggle-checkbox:checked ~ nav { 
-    max-height: 300px;
-  }
-
-  /* LÓGICA CSS PURO: ANIMACIÓN "X" */
-  .menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(2) {
-    opacity: 0; 
-  }
-  .menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .menu-toggle-checkbox:checked ~ .menu-toggle .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
-  /* Estilo del menú desplegado */
-  header nav ul {
-    flex-direction: column; 
-    gap: 1.5rem; 
-    padding: 1rem 0 2rem; 
-    background-color: var(--color-black); 
-  }
-  
-  header nav ul li a {
-    padding: 0.5rem 1rem;
-    display: block; 
-    text-align: center;
-  }
-  
-  .intro-section {
-    flex-direction: column;
-    padding: 0 1rem;
-    gap: 2rem;
-  }
-  
-  .mi-imagen {
-    max-width: 150px; 
-    height: 200px; 
-  }
-  
-  #proyectos, #contacto {
-    max-width: 100%;
-    margin: 2rem 0;
-    padding: 2rem 1rem;
-  }
-  
-  #contacto {
-    align-items: center; 
-  }
-
-  #yo {
-    padding: 2rem 1rem; 
-  }
-  
-  .contact-form {
-    align-items: center;
-  }
-  .contact-form .button {
-    align-self: center;
-  }
-
-  footer {
-    max-width: 100%;
-    margin: 3rem 0 0;
   }
 }
